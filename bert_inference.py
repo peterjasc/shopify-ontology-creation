@@ -10,7 +10,6 @@ XLSX_FILE_PATH = "Tooted.xlsx"
 COLLECTIONS_FILE_PATH = "collections.txt"
 TITLE_COLUMN_HEADER = "Title"
 COLLECTION_COLUMN_HEADER = "Collection"
-
 MODEL_NAME = "bert-base-uncased"
 OUTPUT_DIR = "./bert_collection_model"
 
@@ -38,8 +37,7 @@ def load_data(xlsx_path, collections_path, title_col, collection_col):
 def train_bert_model():
  print("--- Starting BERT Model Training (Conceptual) ---")
  print("Loading data...")
- df, collections_list = load_data(XLSX_FILE_PATH, COLLECTIONS_FILE_PATH, TITLE_COLUMN_HEADER,
-          COLLECTION_COLUMN_HEADER)
+ df, collections_list = load_data(XLSX_FILE_PATH, COLLECTIONS_FILE_PATH, TITLE_COLUMN_HEADER, COLLECTION_COLUMN_HEADER)
  if df is None or collections_list is None:
   print("Failed to load data. Exiting training.")
   return
@@ -52,9 +50,7 @@ def train_bert_model():
   return tokenizer(examples[TITLE_COLUMN_HEADER], truncation=True, padding=True, max_length=128)
  from datasets import Dataset
  dataset = Dataset.from_pandas(df)
- tokenized_datasets = dataset.map(tokenize_function, batched=True,
-          remove_columns=[TITLE_COLUMN_HEADER, COLLECTION_COLUMN_HEADER,
-              '__index_level_0__'])
+ tokenized_datasets = dataset.map(tokenize_function, batched=True, remove_columns=[TITLE_COLUMN_HEADER, COLLECTION_COLUMN_HEADER, '__index_level_0__'])
  tokenized_datasets = tokenized_datasets.rename_column("label", "labels")
  train_test_split_ratio = 0.8
  train_dataset, eval_dataset = tokenized_datasets.train_test_split(test_size=1 - train_test_split_ratio).values()
