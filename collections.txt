@@ -1,0 +1,14 @@
+Refrigerants
+Compressors-Hermetic-compressors
+Compressors-Hermetic-compressors-Spare parts
+Compressors-Scroll-compressors
+Tools-Pipe working tools
+Chemistry-Cleaning
+Chemistry-Oil acidity tests
+Evaporators-Fan evaporators
+Evaporators-Static evaporators
+Condensers
+Filters
+Thermostats
+Pressure switches-Mini pressure switches
+Pressure switches-Pressure switches
